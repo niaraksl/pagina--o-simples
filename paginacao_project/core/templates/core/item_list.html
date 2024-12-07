@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paginação</title>
+</head>
+<body>
+    <h1>Lista de Itens</h1>
+    <ul>
+        {% for item in page_obj %}
+            <li>{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Primeira</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+        {% endif %}
+    </div>
+</body>
+</html>
